@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TravelRecordApp"
+             xmlns:viewModels="clr-namespace:TravelRecordApp.ViewModels"
+             x:Class="TravelRecordApp.HomePage">
+
+    <TabbedPage.BindingContext>
+        <viewModels:HomeViewModel />
+    </TabbedPage.BindingContext>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="Add" Icon="ic_action_add_box.png" Command="{Binding AddTravelCommand}"/>
+    </TabbedPage.ToolbarItems>
+    
+    <local:HistoryPage Title="History" Icon="ic_action_history.png"></local:HistoryPage>
+    <local:MapPage Title="Map" Icon="ic_action_map.png"></local:MapPage>
+    <local:ProfilePage Title="Profile" Icon="ic_action_person.png"></local:ProfilePage>
+    
+</TabbedPage>

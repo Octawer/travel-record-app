@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:TravelRecordApp.ViewModels"
+             x:Class="TravelRecordApp.TravelPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:TravelViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Icon="ic_action_save.png" Command="{Binding PostCommand}" CommandParameter="{Binding Post}"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout x:Name="travelPageContainer" >
+        <Entry x:Name="txtExperience" Text="{Binding Experience, Mode=TwoWay}" Placeholder="enter your experience..."/>
+        <ListView x:Name="venuesListView" SelectedItem="{Binding Venue, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Margin="20,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Column="0" Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Grid.Column="0" Grid.Row="1" Text="{Binding Location.Address}" TextColor="DodgerBlue" />
+                            <Label Grid.Column="1" Grid.Row="0" Text="{Binding Location.Distance, StringFormat='{0} mts'}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
