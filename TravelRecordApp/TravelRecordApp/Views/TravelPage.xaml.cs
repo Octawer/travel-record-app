@@ -1,4 +1,6 @@
 ﻿using Plugin.Geolocator;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +23,43 @@ namespace TravelRecordApp
         {
             base.OnAppearing();
 
-            var geolocator = CrossGeolocator.Current;
-            var position = await geolocator.GetPositionAsync();
+            // TODO: move to viewModel (UpdateAsync) & ObservableCollection<Venue>
 
-            List<Venue> venues = await Venue.GetVenuesAsync(position.Latitude, position.Longitude);
+            try
+            {
+                PermissionStatus locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (!locationStatus.Equals(PermissionStatus.Granted))
+                {
+                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location))
+                    {
+                        await DisplayAlert("Location Needed", "We need permission to access device location to show you nearby venues", "OK");
+                    }
 
-            venuesListView.ItemsSource = venues;
+                    Dictionary<Permission, PermissionStatus> permissionResults = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
+                    if (permissionResults.ContainsKey(Permission.Location))
+                    {
+                        locationStatus = permissionResults[Permission.Location];
+                    }
+                }
+
+                if (locationStatus.Equals(PermissionStatus.Granted))
+                {
+                    var geolocator = CrossGeolocator.Current;
+                    var position = await geolocator.GetPositionAsync();
+
+                    List<Venue> venues = await Venue.GetVenuesAsync(position.Latitude, position.Longitude);
+
+                    venuesListView.ItemsSource = venues;
+                }
+                else
+                {
+                    await DisplayAlert("Location Denied", "We cannot show you venues because you denied location access permissions", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"An unexpected error ocurred: {ex.Message}", "OK");
+            }
         }
     }
 }
