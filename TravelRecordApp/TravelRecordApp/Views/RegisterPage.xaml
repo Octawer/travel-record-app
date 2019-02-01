@@ -9,7 +9,7 @@
         <viewModels:RegisterViewModel />
     </ContentPage.BindingContext>
     
-    <StackLayout x:Name="registerContainer" VerticalOptions="Center" Margin="30,0">
+    <StackLayout x:Name="registerContainer" VerticalOptions="Center" Margin="30,0" CompressedLayout.IsHeadless="True">
         <Image x:Name="registerIcon" Aspect="AspectFit" HorizontalOptions="FillAndExpand" Margin="10" HeightRequest="100" WidthRequest="100"></Image>
         <!-- Place new controls here -->
         <Entry x:Name="txtEmail" Text="{Binding Email, Mode=TwoWay}" Placeholder="email" Keyboard="Email"></Entry>

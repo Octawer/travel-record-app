@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TravelRecordApp.ProfilePage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout CompressedLayout.IsHeadless="True">
             <Label x:Name="txtPostCount" Text="--" HorizontalOptions="Center" TextColor="DodgerBlue" FontAttributes="Bold"/>
             <Label Text="posts" HorizontalOptions="Center" TextColor="LightGray"></Label>
             <ListView x:Name="categoriesListView">

@@ -12,7 +12,7 @@
         <ToolbarItem Text="Save" Icon="ic_action_save.png" Command="{Binding PostCommand}" CommandParameter="{Binding Post}"/>
     </ContentPage.ToolbarItems>
     
-    <StackLayout x:Name="travelPageContainer" >
+    <StackLayout x:Name="travelPageContainer" CompressedLayout.IsHeadless="True">
         <Entry x:Name="txtExperience" Text="{Binding Experience, Mode=TwoWay}" Placeholder="enter your experience..."/>
         <ListView x:Name="venuesListView" SelectedItem="{Binding Venue, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Margin="20,0">
             <ListView.ItemTemplate>

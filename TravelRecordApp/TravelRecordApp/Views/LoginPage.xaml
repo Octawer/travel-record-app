@@ -9,7 +9,7 @@
         <viewModels:LoginViewModel />
     </ContentPage.BindingContext>
     
-    <StackLayout VerticalOptions="Center" Margin="30,0">
+    <StackLayout VerticalOptions="Center" Margin="30,0" CompressedLayout.IsHeadless="True">
         <Image x:Name="mainIcon" Aspect="AspectFit" HorizontalOptions="FillAndExpand" Margin="20" HeightRequest="150" WidthRequest="150"></Image>
         <!-- Place new controls here -->
         <Entry x:Name="txtEmail" Text="{Binding Email, Mode=TwoWay}" Placeholder="email" Keyboard="Email"></Entry>
