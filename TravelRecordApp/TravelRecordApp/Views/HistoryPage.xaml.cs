@@ -17,16 +17,8 @@ namespace TravelRecordApp
         {
             base.OnAppearing();
 
-            //using (var conn = new SQLite.SQLiteConnection(App.DatabasePath))
-            //{
-            //    conn.CreateTable<Post>();
-            //    var posts = conn.Table<Post>().ToList();
-
-            //    lvTravels.ItemsSource = posts;
-            //}
-
             List<Post> userPosts = await Post.GetUserPostsAsync(App.LoggedUser.ID);
-            lvTravels.ItemsSource = userPosts;
+            travelsListView.ItemsSource = userPosts;
         }
     }
 }

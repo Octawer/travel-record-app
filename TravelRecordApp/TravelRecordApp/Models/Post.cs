@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace TravelRecordApp.Models
         private int _locationDistance;
         private string _userID;
         private Venue _venue;
-
+        private DateTimeOffset _createdAt;
 
         public string ID
         {
@@ -139,7 +140,7 @@ namespace TravelRecordApp.Models
         {
             get => _venue;
             set
-            { 
+            {
                 _venue = value;
 
                 if (Venue != null)
@@ -158,6 +159,16 @@ namespace TravelRecordApp.Models
                 }
 
                 OnPropertyChanged(nameof(Venue));
+            }
+        }
+
+        public DateTimeOffset CREATEDAT
+        {
+            get => _createdAt;
+            set
+            {
+                _createdAt = value;
+                OnPropertyChanged(nameof(CREATEDAT));
             }
         }
 

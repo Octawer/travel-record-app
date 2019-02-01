@@ -11,6 +11,7 @@ namespace TravelRecordApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TravelPage : ContentPage
 	{
+
         public TravelPage ()
 		{
 			InitializeComponent ();
