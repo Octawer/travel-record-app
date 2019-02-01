@@ -3,7 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:System.ComponentModel;assembly=netstandard"
              xmlns:converters="clr-namespace:TravelRecordApp.ViewModels.Converters"
+             xmlns:viewModels="clr-namespace:TravelRecordApp.ViewModels"
              x:Class="TravelRecordApp.HistoryPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:HistoryViewModel/>
+    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -11,7 +16,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ListView x:Name="travelsListView">
+    <ListView x:Name="travelsListView" ItemsSource="{Binding Posts}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding Experience}" Detail="{Binding CREATEDAT, Converter={StaticResource dateToStringConverter}}"></TextCell>
