@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:System.ComponentModel;assembly=netstandard"
              xmlns:converters="clr-namespace:TravelRecordApp.ViewModels.Converters"
              xmlns:viewModels="clr-namespace:TravelRecordApp.ViewModels"
-             x:Class="TravelRecordApp.HistoryPage">
+             x:Class="TravelRecordApp.HistoryPage"
+             x:Name="HistoryPageName">
 
     <ContentPage.BindingContext>
         <viewModels:HistoryViewModel/>
@@ -16,10 +17,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ListView x:Name="travelsListView" ItemsSource="{Binding Posts}">
+    <ListView x:Name="travelsListView" ItemsSource="{Binding Posts}" RefreshCommand="{Binding RefreshPostsCommand}" IsRefreshing="{Binding IsBusy}" IsPullToRefreshEnabled="True">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Experience}" Detail="{Binding CREATEDAT, Converter={StaticResource dateToStringConverter}}"></TextCell>
+                <TextCell Text="{Binding Experience}" Detail="{Binding CREATEDAT, Converter={StaticResource dateToStringConverter}}">
+                    <TextCell.ContextActions>
+                        <MenuItem Text="Delete" Command="{Binding Path=BindingContext.DeletePostCommand, Source={x:Reference Name=HistoryPageName}}" CommandParameter="{Binding}" IsDestructive="True"></MenuItem>
+                    </TextCell.ContextActions>
+                </TextCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

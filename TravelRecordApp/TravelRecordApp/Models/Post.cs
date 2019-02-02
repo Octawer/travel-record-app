@@ -200,6 +200,8 @@ namespace TravelRecordApp.Models
                 .ToDictionary(g => g.Key, g => g.ToList().Count);
         }
 
+        public static async Task DeleteAsync(Post post) => await App.MobileService.GetTable<Post>().DeleteAsync(post);
+
         #endregion
 
     }
