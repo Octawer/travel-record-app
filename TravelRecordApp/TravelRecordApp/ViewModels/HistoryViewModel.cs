@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TravelRecordApp.Models;
+using TravelRecordApp.Services;
 using Xamarin.Forms;
 
 namespace TravelRecordApp.ViewModels
@@ -50,6 +49,7 @@ namespace TravelRecordApp.ViewModels
         {
             IsBusy = true;
             await UpdatePostsAsync();
+            await AzureMobileDatabaseService.OfflineSyncAsync();
             IsBusy = false;
         }
 
@@ -69,7 +69,9 @@ namespace TravelRecordApp.ViewModels
             {
                 var post = parameter as Post;
                 await Post.DeleteAsync(post);
-                UpdatePostsAsync();
+                await UpdatePostsAsync();
+
+                await AzureMobileDatabaseService.OfflineSyncAsync();
             }
             catch (Exception ex)
             {

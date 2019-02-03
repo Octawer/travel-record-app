@@ -25,7 +25,6 @@ namespace TravelRecordApp.Droid
 
             var dbName = "travelRecord_db.sqlite";
             var dbFolderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-
             var dbLocation = Path.Combine(dbFolderPath, dbName);
 
             LoadApplication(new App(dbLocation));

@@ -1,6 +1,4 @@
-﻿using System;
-using TravelRecordApp.Models;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace TravelRecordApp.Views
 {

@@ -3,7 +3,6 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TravelRecordApp.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

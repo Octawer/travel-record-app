@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TravelRecordApp.Models;
+﻿using TravelRecordApp.Services;
 using TravelRecordApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,14 +13,16 @@ namespace TravelRecordApp
 			InitializeComponent ();
 		}
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
             if (BindingContext is HistoryViewModel)
             {
                 var viewModel = (HistoryViewModel)BindingContext;
-                viewModel.UpdatePostsAsync();
+                await viewModel.UpdatePostsAsync();
+
+                await AzureMobileDatabaseService.OfflineSyncAsync();
             }
         }
     }
